@@ -42,6 +42,11 @@ namespace Registrar
             return newList;
         }
 
+        public override bool Equals(System.Object otherCourse)
+        {
+            return false;
+        }
+
 
 
 

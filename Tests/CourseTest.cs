@@ -23,7 +23,16 @@ namespace Registrar
             Assert.Equal(0, result);
         }
 
+        [Fact]
+        public void Test_Equal_ReturnsTrueForSameCourse()
+        {
+            //Arrange, Act
+            Course firstCourse = new Course("Math");
+            Course secondCourse = new Course("Math");
 
+            //Assert
+            Assert.Equal(firstCourse, secondCourse);
+        }
 
 
 
