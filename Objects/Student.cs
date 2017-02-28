@@ -96,6 +96,12 @@ namespace Registrar
             }
         }
 
+        public static Student Find(int id)
+        {
+            Student aStudent = new Student("Jimmy");
+            return aStudent;
+        }
+
 
 
 

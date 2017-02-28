@@ -66,6 +66,19 @@ namespace Registrar
             Assert.Equal(testId, result);
         }
 
+        [Fact]
+        public void Test_Find_FindsTaskinDatablase()
+        {
+            //Arrange
+            Student testStudent = new Student ("John");
+            testStudent.Save();
+
+            //Act
+            Student foundStudent = Student.Find(testStudent.GetId());
+
+            //Asswert
+            Assert.Equal(testStudent, foundStudent);
+        }
 
 
         public void Dispose()
