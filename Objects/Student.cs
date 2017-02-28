@@ -98,8 +98,33 @@ namespace Registrar
 
         public static Student Find(int id)
         {
-            Student aStudent = new Student("Jimmy");
-            return aStudent;
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM students WHERE id = @StudentId;", conn);
+            SqlParameter StudentIdParameter = new SqlParameter("@StudentId", id.ToString());
+            cmd.Parameters.Add(StudentIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundStudentId = 0;
+            string foundStudentName = null;
+
+            while(rdr.Read())
+            {
+                foundStudentId = rdr.GetInt32(0);
+                foundStudentName = rdr.GetString(1);
+            }
+            Student foundStudent = new Student(foundStudentName, foundStudentId);
+
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundStudent;
         }
 
 
