@@ -72,14 +72,30 @@ namespace Registrar
             // Arrange
             Course testCourse = new Course("P.E.");
             testCourse.Save();
-            Console.WriteLine(testCourse.GetCourse());
 
             // Act
             Course foundCourse = Course.Find(testCourse.GetId());
-            Console.WriteLine(foundCourse.GetCourse());
 
             // Assert
             Assert.Equal(testCourse, foundCourse);
+        }
+
+        [Fact]
+        public void Test_GetStudents_ReturnsAllStudentsInACourse()
+        {
+            //Arrange
+            Course testCourse = new Course("Coding");
+            testCourse.Save();
+
+            Student testStudent1 = new Student("Kory");
+            testStudent1.Save();
+
+            testCourse.AddStudent(testStudent1);
+            List<Student> savedStudents = testCourse.GetStudents();
+            List<Student> testList = new List<Student> {testStudent1};
+
+            //Assert
+            Assert.Equal(testList, savedStudents);
         }
 
 

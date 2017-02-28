@@ -1,6 +1,6 @@
 ##Specs
 
-Check to see if database is empty
+Check to see if students table is empty
 * **Input:**
 * **Output:** true
 
@@ -20,7 +20,7 @@ Program will return true if the student item has been found in the database
 * **Input:** John
 * **Output:** true
 
-Check to see if database is empty
+Check to see if courses table is empty
 * **Input:**
 * **Output:** true
 
@@ -40,7 +40,7 @@ Program will return true if the course item has been found in the database
 * **Input:** P.E.
 * **Output:** true
 
-Check to see if database is empty
+Check to see if students_courses table is empty
 * **Input:**
 * **Output:** true
 
