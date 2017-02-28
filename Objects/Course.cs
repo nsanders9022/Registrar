@@ -83,32 +83,34 @@ namespace Registrar
 
         public static Course Find(int id)
         {
-            // SqlConnection conn = DB.Connection();
-            // conn.Open();
-            //
-            // SqlCommand cmd = new SqlCommand("SELECT * FROM courses WHERE id = @CourseId;", conn);
-            // SqlParameter courseParameter = new SqlParameter("@CourseId", id.ToString());
-            // cmd.Paramerters.Add(courseParameter);
-            // SqlDataReader rdr = cmd.ExecuteReader();
-            //
-            // while(rdr.Read())
-            // {
-            //     foundCourseId = rdr.GetInt32(0);
-            //     foundCourseName = rdr.GetName(1);
-            // }
-            Course foundCourse = new Course("Math", 10);
-            //
-            // if (rdr != null)
-            // {
-            //     rdr.Close();
-            // }
-            // if (conn != null)
-            // {
-            //     conn.Close();
-            // }
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM courses WHERE id = @CourseId;", conn);
+            SqlParameter courseParameter = new SqlParameter("@CourseId", id.ToString());
+            cmd.Parameters.Add(courseParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundCourseId = 0;
+            string foundCourseName = null;
+
+            while(rdr.Read())
+            {
+                foundCourseId = rdr.GetInt32(0);
+                foundCourseName = rdr.GetString(1);
+            }
+            Course foundCourse = new Course(foundCourseName, foundCourseId);
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
             return foundCourse;
         }
-
 
 
 

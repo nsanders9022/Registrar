@@ -72,9 +72,11 @@ namespace Registrar
             // Arrange
             Course testCourse = new Course("P.E.");
             testCourse.Save();
+            Console.WriteLine(testCourse.GetCourse());
 
             // Act
             Course foundCourse = Course.Find(testCourse.GetId());
+            Console.WriteLine(foundCourse.GetCourse());
 
             // Assert
             Assert.Equal(testCourse, foundCourse);
