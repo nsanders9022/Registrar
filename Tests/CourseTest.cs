@@ -66,6 +66,20 @@ namespace Registrar
             Assert.Equal(testId, result);
         }
 
+        [Fact]
+        public void Test_Find_FindsCourseId()
+        {
+            // Arrange
+            Course testCourse = new Course("P.E.");
+            testCourse.Save();
+
+            // Act
+            Course foundCourse = Course.Find(testCourse.GetId());
+
+            // Assert
+            Assert.Equal(testCourse, foundCourse);
+        }
+
 
 
 
