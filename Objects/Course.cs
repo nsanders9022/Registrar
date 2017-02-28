@@ -44,7 +44,17 @@ namespace Registrar
 
         public override bool Equals(System.Object otherCourse)
         {
-            return false;
+            if(!(otherCourse is Course))
+            {
+                return false;
+            }
+            else
+            {
+                Course newCourse = (Course) otherCourse;
+                bool idEquality = this.GetId() == newCourse.GetId();
+                bool courseEquality = this.GetCourse() == newCourse.GetCourse();
+                return (idEquality && courseEquality);
+            }
         }
 
 
