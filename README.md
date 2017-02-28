@@ -4,6 +4,10 @@ Check to see if database is empty
 * **Input:**
 * **Output:** true
 
+Program recognizes two courses instances as equal if they have the same name
+* **Input:** Kory, Kory
+* **Output:** true
+
 Program will save entries into the student table
 * **Input:** Kory
 * **Output:** Kory
@@ -21,7 +25,7 @@ Check to see if database is empty
 * **Output:** true
 
 Program recognizes two courses instances as equal if they have the same name
-* **Input:** Coding,Coding
+* **Input:** Coding, Coding
 * **Output:** true
 
 Program will save entries into the courses table
