@@ -80,6 +80,24 @@ namespace Registrar
             Assert.Equal(testStudent, foundStudent);
         }
 
+        [Fact]
+        public void Test_GetCourses_ReturnsAllCoursesForAStudent()
+        {
+            //Arrange
+            Student testStudent = new Student("Nicole");
+            testStudent.Save();
+
+            Course testCourse = new Course("Math");
+            testCourse.Save();
+
+            testStudent.AddCourse(testCourse);
+            List<Course> savedCourses = testStudent.GetCourses();
+            List<Course> testList = new List<Course> {testCourse};
+
+            //Assert
+            Assert.Equal(testList, savedCourses);
+        }
+
 
         public void Dispose()
         {

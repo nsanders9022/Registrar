@@ -127,6 +127,61 @@ namespace Registrar
             return foundStudent;
         }
 
+        public void AddCourse(Course newCourse)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO students_courses (student_id, course_id) VALUES (@StudentId, @CourseId);", conn);
+            SqlParameter courseIdParameter = new SqlParameter ("@CoursetId", newCourse.GetId());
+            cmd.Parameters.Add(courseIdParameter);
+
+            SqlParameter studentIdParameter = new SqlParameter("@StudentId", this.GetId());
+            cmd.Parameters.Add(studentIdParameter);
+
+            cmd.ExecuteNonQuery();
+
+            if(conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        public List<Course> GetCourses()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT courses.* FROM students JOIN students_courses ON (students.id = students_courses.student_id) JOIN courses ON (students_courses.course_id = courses.id) WHERE students.id = @StudentId");
+
+            SqlParameter StudentIdParameter = new SqlParameter("@StudentId", this.GetId().ToString());
+
+            cmd.Parameters.Add(StudentIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            List<Course> newList = new List<Course>{};
+
+            while(rdr.Read())
+            {
+                int courseId = rdr.GetInt32(0);
+                string courseName = rdr.GetString(1);
+
+                Course newCourse = new Course(courseName, courseId);
+                newList.Add(newCourse);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return newList;
+
+        }
+
 
 
 
