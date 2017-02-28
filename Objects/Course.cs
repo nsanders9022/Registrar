@@ -56,6 +56,30 @@ namespace Registrar
                 return (idEquality && courseEquality);
             }
         }
+        public void Save()
+        {
+            // SqlConnection conn = new DB.Connection();
+            // conn.Open()
+            //
+            // SqlCommand cmd = new SqlCommand("INSERT INTO courses (course) OUTPUT INSERTED.id VALUES (@CourseName);", conn);
+            //
+            // SqlParameter courseParameter = new SqlParameter("@CourseName", this.GetCourse());
+            // cmd.Parameters.Add(courseParameter);
+            // SwlDataReader rdr = cmd.ExecuteReader();
+            //
+            // while (rdr.Read())
+            // {
+            //     this._id = rdr.GetInt32(0);
+            // }
+            // if (rdr != null)
+            // {
+            //     rdr.Close();
+            // }
+            // if (conn != null)
+            // {
+            //     conn.Close();
+            // }
+        }
 
 
 

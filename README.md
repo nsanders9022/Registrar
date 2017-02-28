@@ -46,7 +46,7 @@ Check to see if database is empty
 
 Program will add a student to a course
 * **Input:** Kory
-* **Output:** Codingy
+* **Output:** Coding
 
 Program will return all the students in a course
 * **Input:** Coding

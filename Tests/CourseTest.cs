@@ -34,6 +34,21 @@ namespace Registrar
             Assert.Equal(firstCourse, secondCourse);
         }
 
+        [Fact]
+        public void Test_Save_SaveCourseToDatabase()
+        {
+            //Arrange
+            Course testCourse = new Course("Math");
+            testCourse.Save();
+
+            //Act
+            List<Course> result = Course.GetAll();
+            List<Course> testList = new List<Course>{testCourse};
+
+            //Assert
+            Assert.Equal(testList, result);
+        }
+
 
 
 
