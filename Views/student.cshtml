@@ -12,3 +12,17 @@
         <h3><a href='/course/@course.GetId()'>@course.GetCourse()</a></h3>
     }
 </div>
+
+<div class="row">
+    <form class="" action='/student/course_added' method="post">
+        <input id='student' name='student' type='hidden' value='@Model["student"].GetId()'>
+        <label for="course-list">Select a course</label>
+        <select name="course-list" id="course-list" type="text">
+            @foreach (var course in @Model["all_courses"])
+            {
+                <option value="@course.GetId()">@course.GetCourse()</option>
+            }
+        </select>
+        <button type="submit" name="button">Add</button>
+    </form>
+</div>

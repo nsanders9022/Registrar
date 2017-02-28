@@ -1,0 +1,19 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <form class="" action="/courses" method="post">
+        <label for="course">Enter a new class</label>
+        <input type="text" name="course" id="course">
+        <button type="submit" name="button">Submit</button>
+    </form>
+</div>
+
+<div class="row">
+    <h2>All Courses</h2>
+    @foreach (var course in @Model)
+    {
+        <h3><a href="/course/@course.GetId()">@course.GetCourse()</a></h3>
+    }
+</div>
