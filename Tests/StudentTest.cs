@@ -49,6 +49,23 @@ namespace Registrar
             Assert.Equal(testList, result);
         }
 
+        [Fact]
+        public void Test_SaveAssignsIdToObject()
+        {
+            //Arrange
+            Student testStudent = new Student("Nicole");
+            testStudent.Save();
+
+            //Act
+            Student savedStudent = Student.GetAll()[0];
+
+            int result = savedStudent.GetId();
+            int testId = testStudent.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
 
 
         public void Dispose()
