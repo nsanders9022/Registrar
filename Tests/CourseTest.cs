@@ -27,8 +27,8 @@ namespace Registrar
         public void Test_Equal_ReturnsTrueForSameCourse()
         {
             //Arrange, Act
-            Course firstCourse = new Course("Math");
-            Course secondCourse = new Course("Math");
+            Course firstCourse = new Course("Coding");
+            Course secondCourse = new Course("Coding");
 
             //Assert
             Assert.Equal(firstCourse, secondCourse);
@@ -47,6 +47,23 @@ namespace Registrar
 
             //Assert
             Assert.Equal(testList, result);
+        }
+
+        [Fact]
+        public void Test_Save_AssignIdCourseObject()
+        {
+            // Arrange
+            Course testCourse = new Course("Business");
+            testCourse.Save();
+
+            // Act
+            Course savedCourse = Course.GetAll()[0];
+
+            int result = savedCourse.GetId();
+            int testId = testCourse.GetId();
+
+            // Assert
+            Assert.Equal(testId, result);
         }
 
 
