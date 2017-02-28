@@ -102,7 +102,7 @@ namespace Registrar
         public void Dispose()
         {
             Student.DeleteAll();
-            // Category.DeleteAll();
+            Course.DeleteAll();
         }
     }
 }

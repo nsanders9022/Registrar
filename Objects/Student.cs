@@ -133,7 +133,8 @@ namespace Registrar
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("INSERT INTO students_courses (student_id, course_id) VALUES (@StudentId, @CourseId);", conn);
-            SqlParameter courseIdParameter = new SqlParameter ("@CoursetId", newCourse.GetId());
+
+            SqlParameter courseIdParameter = new SqlParameter ("@CourseId", newCourse.GetId());
             cmd.Parameters.Add(courseIdParameter);
 
             SqlParameter studentIdParameter = new SqlParameter("@StudentId", this.GetId());
@@ -152,7 +153,7 @@ namespace Registrar
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT courses.* FROM students JOIN students_courses ON (students.id = students_courses.student_id) JOIN courses ON (students_courses.course_id = courses.id) WHERE students.id = @StudentId");
+            SqlCommand cmd = new SqlCommand("SELECT courses.* FROM students JOIN students_courses ON (students.id = students_courses.student_id) JOIN courses ON (students_courses.course_id = courses.id) WHERE students.id = @StudentId;", conn);
 
             SqlParameter StudentIdParameter = new SqlParameter("@StudentId", this.GetId().ToString());
 
