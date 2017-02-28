@@ -1,0 +1,21 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="">
+        <form class="" action="/students" method="post">
+            <label for="student">Enter a new student</label>
+            <input type="text" name="student" id="student">
+            <button type="submit" name="button">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <h2>All students</h2>
+@foreach(var name in Model)
+{
+    <h3><a href="/student/@name.GetId()">@name.GetName()</a></h3>
+    }
+</div>
