@@ -65,6 +65,36 @@ namespace Registrar
             Assert.Equal(testDepartment, foundDepartment);
         }
 
+        [Fact]
+        public void Test_GetCourses_ReturnsAllCoursesInADepartment()
+        {
+            //Arrange
+
+            Department testDepartment1 = new Department("Math");
+            testDepartment1.Save();
+
+            Course testCourse = new Course("Algebra 101");
+            testCourse.Save();
+
+            testDepartment1.AddCourse(testCourse);
+
+            List<Course> savedCourses = testDepartment1.GetCourses();
+            List<Course> testList = new List<Course> {testCourse};
+
+            foreach (var course in savedCourses)
+            {
+                Console.WriteLine("Saved courses " + course.GetCourse());
+            }
+
+            foreach (var course in testList)
+            {
+                Console.WriteLine("Test courses " + course.GetCourse());
+            }
+
+            //Assert
+            Assert.Equal(testList, savedCourses);
+        }
+
 
 
 
@@ -82,7 +112,7 @@ namespace Registrar
         {
             Department.DeleteAll();
             // Department.DeleteAll();
-            // Student.DeleteAll();
+            Course.DeleteAll();
         }
     }
 }

@@ -115,7 +115,59 @@ namespace Registrar
             return foundDepartment;
         }
 
+        public void AddCourse(Course newCourse)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
+            SqlCommand cmd = new SqlCommand("INSERT INTO departments_courses (department_id, course_id) VALUES (@DepartmentId, @CourseId);", conn);
+
+            SqlParameter departmentIdParameter = new SqlParameter("@DepartmentId", this.GetId());
+            cmd.Parameters.Add(departmentIdParameter);
+
+            SqlParameter courseIdParameter = new SqlParameter("@CourseId", newCourse.GetId());
+            cmd.Parameters.Add(courseIdParameter);
+
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        public List<Course> GetCourses()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT departments.* FROM courses JOIN departments_courses ON (courses.id = departments_courses.course_id) JOIN departments ON (departments_courses.department_id = departments.id) WHERE departments.id = @DepartmentId;", conn);
+            SqlParameter DepartmentIdParameter = new SqlParameter("@DepartmentId", this.GetId().ToString());
+
+            cmd.Parameters.Add(DepartmentIdParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            List<Course> newList = new List<Course>{};
+
+            while(rdr.Read())
+            {
+                int courseId = rdr.GetInt32(0);
+                string courseName = rdr.GetString(1);
+
+                Course newCourse = new Course(courseName, courseId);
+                newList.Add(newCourse);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return newList;
+        }
 
 
 
