@@ -34,6 +34,36 @@ namespace Registrar
 
             Assert.Equal(testList, result);
         }
+        [Fact]
+        public void Test_Save_AssignIdDepartmentObject()
+        {
+            // Arrange
+            Department testDepartment = new Department("Business");
+            testDepartment.Save();
+
+            // Act
+            Department savedDepartment = Department.GetAll()[0];
+
+            int result = savedDepartment.GetId();
+            int testId = testDepartment.GetId();
+
+            // Assert
+            Assert.Equal(testId, result);
+        }
+
+        [Fact]
+        public void Test_Find_FindsDepartmentId()
+        {
+            // Arrange
+            Department testDepartment = new Department("P.E.");
+            testDepartment.Save();
+
+            // Act
+            Department foundDepartment = Department.Find(testDepartment.GetId());
+
+            // Assert
+            Assert.Equal(testDepartment, foundDepartment);
+        }
 
 
 
@@ -51,7 +81,7 @@ namespace Registrar
         public void Dispose()
         {
             Department.DeleteAll();
-            // Course.DeleteAll();
+            // Department.DeleteAll();
             // Student.DeleteAll();
         }
     }
