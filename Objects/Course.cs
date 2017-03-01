@@ -166,7 +166,7 @@ namespace Registrar
             return newList;
         }
 
-    
+
 
 
 
@@ -206,6 +206,5 @@ namespace Registrar
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-
     }
 }
