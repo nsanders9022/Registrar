@@ -1,5 +1,3 @@
-##Specs skarbek
-
 # Registrar
 
 #### By _**Nicole Sanders, Kory Skarbek**_
